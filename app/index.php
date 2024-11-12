@@ -1,6 +1,6 @@
 <?php
 
-abstract class Vehicle
+abstract class Vehicle implements VehicleInterface
 {
     protected string $name;
     protected string $wheelType;
@@ -17,32 +17,32 @@ abstract class Vehicle
 
     public function moveForward(): void
     {
-        echo $this->name . " двигается вперёд ↑ <br>";
+        echo $this->name . ' двигается вперёд ↑ <br>';
     }
 
     public function moveBackward(): void
     {
-        echo $this->name . " двигается назад ↓ <br>";
+        echo $this->name . ' двигается назад ↓ <br>';
     }
 
     public function moveLeft(): void
     {
-        echo $this->name . " двигается влево ← <br>";
+        echo $this->name . ' двигается влево ← <br>';
     }
 
     public function moveRight(): void
     {
-        echo $this->name . " двигается вправо → <br>";
+        echo $this->name . ' двигается вправо → <br>';
     }
 
-    public function vehicleHonk(): void
+    public function honk(): void
     {
-        echo $this->name . " сигналит <br>";
+        echo $this->name . ' сигналит <br>';
     }
 
-    public function vehicleWipersActivate(): void
+    public function wipersActivate(): void
     {
-        echo $this->name . " включает дворники <br>";
+        echo $this->name . ' включает дворники <br>';
     }
 }
 
@@ -53,7 +53,7 @@ interface VehicleInterface
     public function lightsOn();
 }
 
-class Car extends Vehicle implements VehicleInterface
+class Car extends Vehicle
 {
     public string $interior;
 
@@ -65,16 +65,16 @@ class Car extends Vehicle implements VehicleInterface
 
     public function activeAbility(): void
     {
-        echo $this->name . " валит боком ↪ <br>";
+        echo $this->name . ' валит боком ↪ <br>';
     }
 
     public function lightsOn(): void
     {
-        echo $this->name . " включает фары <br>";
+        echo $this->name . ' включает фары <br>';
     }
 }
 
-class Tank extends Vehicle implements VehicleInterface
+class Tank extends Vehicle
 {
     public string $tankCrew;
 
@@ -86,47 +86,32 @@ class Tank extends Vehicle implements VehicleInterface
 
     public function activeAbility(): void
     {
-        echo $this->name . " стреляет ↯,есть пробитие ⟴ <br>";
+        echo $this->name . ' стреляет ↯,есть пробитие ⟴ <br>';
     }
 
     public function lightsOn(): void
     {
-        echo $this->name . " включает фары <br>";
+        echo $this->name . ' включает фары <br>';
     }
 
     public function vehicleWipersActivate(): void
     {
-        echo "У " . $this->name . " дворников нет <br>";
+        echo sprintf('У %s дворников нет', $this->name);
     }
 }
 
-class Tractor extends Vehicle implements VehicleInterface
+class Tractor extends Vehicle
 {
     public function activeAbility(): void
     {
-        echo $this->name . " убирает ковшом ⇋ <br>";
+        echo $this->name . ' убирает ковшом ⇋ <br>';
     }
 
     public function lightsOn(): void
     {
-        echo $this->name . " включает фары <br>";
+        echo $this->name . ' включает фары <br>';
     }
 }
-
-//function vehicleController(Vehicle vehicle): void
-//{
-//    vehicle->activeAbility();
-//    vehicle− > moveForward();
-//    vehicle− > moveForward();
-//    vehicle->moveRight();
-//    vehicle− > moveLeft();
-//    vehicle− > moveLeft();
-//    vehicle->moveBackward();
-//    vehicle− > vehicleHonk();
-//    vehicle− > vehicleHonk();
-//    vehicle->vehicleWipersActivate();
-//    $vehicle->lightsOn();
-//}
 
 function vehicleController(Vehicle $vehicle): void
 {
@@ -136,8 +121,8 @@ function vehicleController(Vehicle $vehicle): void
         'moveRight',
         'moveLeft',
         'moveBackward',
-        'vehicleHonk',
-        'vehicleWipersActivate',
+        'honk',
+        'wipersActivate',
         'lightsOn',
     ];
 
