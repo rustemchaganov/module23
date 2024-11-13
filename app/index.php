@@ -57,7 +57,7 @@ class Car extends Vehicle
 {
     public string $interior;
 
-    public function __construct(string $name, string $wheelType, string $engine, string $body, string $interior)
+    public function __construct(string $name, string $wheelType, string $engine, string $body, string $interior = "")
     {
         parent::__construct($name, $wheelType, $engine, $body);
         $this->interior = $interior;
@@ -78,7 +78,7 @@ class Tank extends Vehicle
 {
     public string $tankCrew;
 
-    public function __construct(string $name, string $wheelType, string $engine, string $body, string $tankCrew)
+    public function __construct(string $name, string $wheelType, string $engine, string $body, string $tankCrew = "")
     {
         parent::__construct($name, $wheelType, $engine, $body);
         $this->tankCrew = $tankCrew;
@@ -102,6 +102,14 @@ class Tank extends Vehicle
 
 class Tractor extends Vehicle
 {
+    public string $bucketCapacity;
+
+    public function __construct(string $name, string $wheelType, string $engine, string $body, string $bucketCapacity = "")
+    {
+        parent::__construct($name, $wheelType, $engine, $body);
+        $this->bucketCapacity = $bucketCapacity;
+    }
+
     public function activeAbility(): void
     {
         echo $this->name . ' убирает ковшом ⇋ <br>';
@@ -139,7 +147,7 @@ function vehicleController(Vehicle $vehicle): void
 
 $Car = new Car("Ford", "R21x4", "EcoBoost V6 engine", "sedan", "red interior");
 $Tank = new Tank("Conqueror", "road wheels", "	Rolls-Royce Meteor M120", "5 inch armor", "5 people");
-$Tractor = new Tractor("John Deere", "12.4-24 и 16.9-28", "John Deere 3029HTD", "open cab");
+$Tractor = new Tractor("John Deere", "12.4-24 и 16.9-28", "John Deere 3029HTD", "open cab", "1 cubic meter");
 
 vehicleController($Car);
 vehicleController($Tank);
